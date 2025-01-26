@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuckLife Game</title>
+    <style>
+        /* Remove all margins, padding, and set full height */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Prevent any scrollbars */
+            background: black; /* Set background to black */
+        }
+
+        /* Ruffle container will take up the full screen */
+        #ruffle-container {
+            position: absolute; /* Position the container to stretch over the entire page */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;  /* Use flex to center the content */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        #ruffle-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Use Ruffle to run the SWF -->
+    <script src="ruffle.js"></script>
+
+    <div id="ruffle-container"></div>
+
+    <script>
+        window.addEventListener("load", function() {
+            const ruffle = window.RufflePlayer.newest();
+            const container = document.getElementById("ruffle-container");
+
+            const player = ruffle.createPlayer();
+            container.appendChild(player);
+
+            player.load("game.swf");  // Ensure this is the correct filename
+
+            // Make the player take up the full page
+            player.style.width = "100%";
+            player.style.height = "100%";
+        });
+    </script>
+</body>
+</html>
